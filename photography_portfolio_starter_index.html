@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Photography</title>
+  <meta name="description" content="Photography portfolio of Your Name" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0b0b0c; --panel:#141416; --border:#242428; --text:#f2f2f2; --muted:#a6a6ab; }
+    * { box-sizing: border-box }
+    body { margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:var(--text); background:var(--bg); }
+    a { color: inherit; }
+    header { position:sticky; top:0; z-index:10; backdrop-filter:saturate(140%) blur(6px); background:rgba(11,11,12,.6); border-bottom:1px solid var(--border); }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 18px 20px; }
+    .nav { display:flex; align-items:center; justify-content:space-between; }
+    .brand { font-weight:800; letter-spacing:.2px }
+    .links a { margin-left:16px; color:var(--muted); text-decoration:none }
+    .links a:hover { color:var(--text) }
+
+    .hero { padding: 40px 20px 10px }
+    h1 { margin:0 0 8px; font-size: 2.2rem }
+    .sub { color:var(--muted); max-width:72ch; line-height:1.6 }
+
+    /* Masonry-style gallery using CSS columns */
+    .gallery { column-width: 320px; column-gap: 16px; padding: 18px 20px 40px }
+    figure { margin:0 0 16px; break-inside: avoid; background:var(--panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow: 0 10px 24px rgba(0,0,0,.25) }
+    img { display:block; width:100%; height:auto; cursor:zoom-in; background:#0a0a0a }
+    figcaption { padding:10px 12px; font-size:.92rem; color:var(--muted) }
+
+    /* Simple lightbox */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.92); display:none; align-items:center; justify-content:center; z-index: 1000 }
+    .lightbox.open { display:flex }
+    .lb-img { max-width:92vw; max-height:88vh; border-radius:12px; box-shadow: 0 24px 80px rgba(0,0,0,.7) }
+    .lb-btn { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); color:#fff; width:44px; height:44px; border-radius:50%; display:grid; place-items:center; cursor:pointer; user-select:none }
+    .lb-prev { left: 3% }
+    .lb-next { right: 3% }
+    .lb-close { top: 6%; right: 3%; transform:none }
+
+    footer { border-top:1px solid var(--border); color:var(--muted); padding: 26px 20px 48px }
+    .credit { font-size:.9rem }
+
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">Your Name</div>
+      <nav class="links" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Photography Portfolio</h1>
+      <p class="sub">A selection of recent work across street, portrait and travel. Replace the images in <code>photos/</code> and update captions below. No Jekyll required — this is a static, one-file site.</p>
+    </section>
+  </main>
+
+  <!--
+    HOW TO USE
+    1) Create a folder named /photos at the root of the repo.
+    2) Export web images to 1600–2000 px on the long edge (JPEG, sRGB, ~75–85 quality) and drop into /photos.
+    3) Duplicate a <figure> block per image, and set the src to photos/your-file.jpg.
+    4) Commit and push; GitHub Pages/Netlify/Vercel will serve index.html.
+  -->
+
+  <section id="work" class="gallery" aria-label="Gallery">
+    <!-- Sample images — replace with your own files in /photos -->
+    <figure>
+      <img loading="lazy" src="photos/sample-1.jpg" alt="City crosswalk at dusk" data-full="photos/sample-1.jpg" />
+      <figcaption>City crosswalk at dusk, 2025</figcaption>
+    </figure>
+    <figure>
+      <img loading="lazy" src="photos/sample-2.jpg" alt="Portrait in soft window light" data-full="photos/sample-2.jpg" />
+      <figcaption>Portrait in window light</figcaption>
+    </figure>
+    <figure>
+      <img loading="lazy" src="photos/sample-3.jpg" alt="Coastal road in fog" data-full="photos/sample-3.jpg" />
+      <figcaption>Coastal road in fog</figcaption>
+    </figure>
+  </section>
+
+  <section id="about" class="wrap" style="padding:10px 20px 34px">
+    <h2>About</h2>
+    <p class="sub">Write a short bio here. Include your location, the kind of work you take on, and publications or clients if relevant.</p>
+  </section>
+
+  <section id="contact" class="wrap" style="padding:0 20px 48px">
+    <h2>Contact</h2>
+    <p class="sub">Email <a href="mailto:you@example.com">you@example.com</a> • Instagram <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a></p>
+  </section>
+
+  <footer class="wrap">
+    <div class="credit">© <span id="year"></span> Your Name. All images and text protected. </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous image">‹</button>
+    <img class="lb-img" id="lbImg" alt="Expanded photograph" />
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next image">›</button>
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+  </div>
+
+  <script>
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Lightweight lightbox
+    const gallery = Array.from(document.querySelectorAll('#work img'));
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const prev = document.getElementById('lbPrev');
+    const next = document.getElementById('lbNext');
+    const closeBtn = document.getElementById('lbClose');
+    let idx = 0;
+
+    function openAt(i){ idx = i; lbImg.src = gallery[idx].dataset.full || gallery[idx].src; lb.classList.add('open'); }
+    function close(){ lb.classList.remove('open'); lbImg.removeAttribute('src'); }
+    function step(d){ idx = (idx + d + gallery.length) % gallery.length; lbImg.src = gallery[idx].dataset.full || gallery[idx].src; }
+
+    gallery.forEach((img,i)=> img.addEventListener('click', ()=> openAt(i)));
+    prev.addEventListener('click', ()=> step(-1));
+    next.addEventListener('click', ()=> step(1));
+    closeBtn.addEventListener('click', close);
+    lb.addEventListener('click', (e)=> { if(e.target===lb) close(); });
+    window.addEventListener('keydown', (e)=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); if(e.key==='ArrowRight') step(1); if(e.key==='ArrowLeft') step(-1); });
+  </script>
+</body>
+</html>
