@@ -23,11 +23,36 @@
     h1 { margin:0 0 8px; font-size: 2.2rem }
     .sub { color:var(--muted); max-width:72ch; line-height:1.6 }
 
-    /* Masonry-style gallery using CSS columns */
-    .gallery { column-width: 320px; column-gap: 16px; padding: 18px 20px 40px }
-    figure { margin:0 0 16px; break-inside: avoid; background:var(--panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow: 0 10px 24px rgba(0,0,0,.25) }
-    img { display:block; width:100%; height:auto; cursor:zoom-in; background:#0a0a0a }
-    figcaption { padding:10px 12px; font-size:.92rem; color:var(--muted) }
+  
+ /* Masonry-style gallery using CSS columns */
+.gallery {
+  column-width: 320px;
+  column-gap: 16px;
+  padding: 18px 20px 40px;
+  width: min(100%, 1200px);  /* NEW: limit total width */
+  margin: 0 auto;            /* NEW: center the container */
+}
+figure {
+  margin: 0 0 16px;
+  break-inside: avoid;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+}
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: zoom-in;
+  background: #0a0a0a;
+}
+figcaption {
+  padding: 10px 12px;
+  font-size: .92rem;
+  color: var(--muted);
+}
 
     /* Simple lightbox */
     .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.92); display:none; align-items:center; justify-content:center; z-index: 1000 }
